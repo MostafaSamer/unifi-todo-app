@@ -1,0 +1,21 @@
+@import 'theme/colors.scss';
+@import 'theme/breakpoints.scss';
+
+.listTodosWrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding-bottom: 100px;
+
+    .listTodos {
+        min-width: 600px;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+
+        @media (max-width: $md) {
+            min-width: 350px;
+        }
+    }
+}

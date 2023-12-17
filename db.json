@@ -1,0 +1,13 @@
+{
+    "todos": [
+        {
+            "id": 1,
+            "title": "Finish this task",
+            "description": "Finish this task",
+            "checked": false,
+            "created_at": false,
+            "finished_at": false,
+            "archive_at": false
+        }
+    ]
+}

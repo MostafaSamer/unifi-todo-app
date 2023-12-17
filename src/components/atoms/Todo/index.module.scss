@@ -1,0 +1,28 @@
+@import 'theme/colors.scss';
+@import 'theme/breakpoints.scss';
+
+.taskWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 10px;
+
+    @media (max-width: $md) {
+        flex-direction: column;
+    }
+
+    .task {
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+    }
+
+    .actions {
+        display: flex;
+        column-gap: 5px;
+    }
+
+    .completed {
+        text-decoration: line-through;
+    }
+}

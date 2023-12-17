@@ -1,0 +1,33 @@
+@import 'theme/colors.scss';
+@import 'theme/breakpoints.scss';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: $color-primary;
+    color: $color-white;
+    margin-bottom: 50px;
+
+    @media (max-width: $sm) {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+  .headerLeft {
+    h1 {
+        margin: 0;
+        color: $color-white;
+      }
+  }
+
+  .headerRight {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    p {
+      margin: 0px;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@import 'theme/typography.scss';
+@import 'theme/global.scss';
+
+
+@import 'theme/breakpoints.scss';
+@import 'theme/colors.scss';
+
+
+html {
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0px;
+  background-color: $color-background;
+}
+
+button {
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: $color-primary;
+}
