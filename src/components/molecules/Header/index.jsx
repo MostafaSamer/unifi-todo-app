@@ -1,3 +1,4 @@
+import Weather from "../Weather";
 import styles from "./index.module.scss"
 
 const Header = () => {
@@ -8,7 +9,8 @@ const Header = () => {
                 <h1>Unifi Todo App</h1>
             </div>
             <div className={styles.headerRight}>
-                dark
+                <Weather />
+                <div>Dark</div>
             </div>
         </header>
     );
