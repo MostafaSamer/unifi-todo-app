@@ -13,7 +13,6 @@ const Header = () => {
             </div>
             <div className={styles.headerRight}>
                 <Weather />
-                <div>Dark</div>
             </div>
         </header>
     );
