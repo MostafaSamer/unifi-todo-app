@@ -23,6 +23,7 @@ export const createTodo = createAsyncThunk('todos/createTodo', async (data, thun
   try {
     const params = {
       title: data.title,
+      description: data.description,
       completed: false,
       userId: data.userId
     }
