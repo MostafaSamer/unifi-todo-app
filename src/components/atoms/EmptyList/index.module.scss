@@ -1,0 +1,11 @@
+@import 'theme/colors.scss';
+@import 'theme/breakpoints.scss';
+
+.emptyListWraper {
+    display: flex;
+    justify-content: center;
+
+    .emptyList {
+        color: $color-secondary-500;
+    }
+}

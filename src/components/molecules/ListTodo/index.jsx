@@ -3,8 +3,8 @@ import styles from "./index.module.scss"
 
 import Todos from "../../../redux/todos";
 import { useEffect } from "react";
-// import Todo from "components/atoms/Todo";
-// import EmptyList from "components/atoms/EmptyList";
+import Todo from "components/atoms/Todo";
+import EmptyList from "components/atoms/EmptyList";
 
 const ListTodo = () => {
     const dispatch = useDispatch();
@@ -17,10 +17,9 @@ const ListTodo = () => {
     const renderTodos = () => {
         return todos.length ? todos.map((todo) => (
             <div key={todo.id} className={styles.todoItem}>
-                {todo.id}
-                {"<Todo todo={todo} />"}
+                <Todo todo={todo} />
             </div>
-        )) : "<EmptyList />"
+        )) : <EmptyList />
     };
 
 

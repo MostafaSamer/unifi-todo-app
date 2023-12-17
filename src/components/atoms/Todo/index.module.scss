@@ -1,7 +1,7 @@
 @import 'theme/colors.scss';
 @import 'theme/breakpoints.scss';
 
-.taskWrapper {
+.todoWrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -11,9 +11,9 @@
         flex-direction: column;
     }
 
-    .task {
+    .todo {
         display: flex;
-        align-items: center;
+        align-items: start;
         column-gap: 5px;
     }
 
@@ -22,7 +22,7 @@
         column-gap: 5px;
     }
 
-    .completed {
+    .checked {
         text-decoration: line-through;
     }
 }

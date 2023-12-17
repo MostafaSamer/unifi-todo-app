@@ -1,22 +1,23 @@
 import { useDispatch } from "react-redux";
-// import CtaButton from "../CtaButton";
 import styles from "./index.module.scss";
 import Todos from "redux/todos";
-// import Input from "../input";
 import { useState } from "react";
+import Input from "../input";
+import CtaButton from "../CtaButton";
 
 const Todo = ({ todo }) => {
 
     const dispatch = useDispatch()
     const [editMode, setEditMode] = useState(false);
     const [editTitle, setEditTitle] = useState(todo.title);
+    const [editDescription, setEditDescription] = useState(todo.description);
 
-    const handleMarkTodo = () => {
+    const handleCheckedTodo = () => {
         dispatch(Todos.thunks.markTodo({
             id: todo.id,
             todo: {
                 ...todo,
-                completed: !todo.completed
+                checked: !todo.checked
             }
         }))
     }
@@ -24,12 +25,13 @@ const Todo = ({ todo }) => {
     const handleEditMode = () => {
         if (!editMode) setEditMode(true);
         else {
-            if(editTitle === "") return;
+            if (editTitle === "") return;
             dispatch(Todos.thunks.updateTodo({
                 id: todo.id,
                 todo: {
                     ...todo,
-                    title: editTitle
+                    title: editTitle,
+                    description: editDescription
                 }
             }));
             setEditMode(false);
@@ -41,13 +43,24 @@ const Todo = ({ todo }) => {
         else setEditMode(false)
     }
 
-    const renderTodo = () => editMode ?
-        <Input
-            accessor={"editTodo"}
-            onChange={(accessor, value) => setEditTitle(value) }
-            value={editTitle}
-        /> :
-        <p className={todo.completed ? `${styles.completed}` : ""}>{todo.title}</p>
+    const renderTodo = () => <div>
+        {editMode ? <>
+            <Input
+                accessor={"editTodoTitle"}
+                onChange={(accessor, value) => setEditTitle(value)}
+                value={editTitle} />
+            <Input
+                type={"textarea"}
+                customStyle={{resize: "none"}}
+                accessor={"editTodoDescription"}
+                onChange={(accessor, value) => setEditDescription(value)}
+                value={editDescription} />
+        </> : <>
+            <h4 className={todo.checked ? `${styles.checked}` : ""}>{todo.title}</h4>
+            <p>{todo.description}</p>
+        </>
+        }
+    </div>
 
 
     return (
@@ -55,8 +68,8 @@ const Todo = ({ todo }) => {
             <div className={styles.todo}>
                 <Input
                     accessor={"mark"}
-                    onChange={handleMarkTodo}
-                    value={todo.completed}
+                    onChange={handleCheckedTodo}
+                    value={todo.checked}
                     type={"checkbox"}
                     customStyle={{
                         width: '20px',

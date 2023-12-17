@@ -11,7 +11,6 @@ export const getTodo = createAsyncThunk('todos/getTodo', async (id, thunkAPI) =>
 });
 
 export const getAllTodos = createAsyncThunk('todos/getAllTodos', async (params, thunkAPI) => {
-  console.log("ssssssssssssss")
   try {
     const response = await TodosAPI.getAllTodos(params);
     return { data: response.data };
