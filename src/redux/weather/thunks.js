@@ -16,3 +16,18 @@ export const getWeather = createAsyncThunk('weathers/getWeather', async (thunkAP
     return thunkAPI.rejectWithValue(error.data);
   }
 });
+
+export const getForecast = createAsyncThunk('weathers/getForecast', async (thunkAPI) => {
+  try {
+    const { latitude, longitude } = await getUserLocation();
+    const apiKey = '7e91761cef4edcd77e58630274ac8490';
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+    const response = await WeatherAPI.getWeather(apiUrl);
+    const data = await response.json();
+    
+    return { data: data };
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.data);
+  }
+});
