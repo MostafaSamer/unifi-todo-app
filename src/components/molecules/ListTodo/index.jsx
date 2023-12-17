@@ -15,9 +15,21 @@ const ListTodo = () => {
     }, []);
 
     const renderTodos = () => {
-        return todos.length ? todos.map((todo) => (
+        return todos.length ? todos
+        .filter(todo => !todo.archive_at)
+        .map((todo) => (
             <div key={todo.id} className={styles.todoItem}>
                 <Todo todo={todo} />
+            </div>
+        )) : <EmptyList />
+    };
+
+    const renderArchives = () => {
+        return todos.length ? todos
+        .filter(todo => todo.archive_at)
+        .map((todo) => (
+            <div key={todo.id} className={styles.todoItem}>
+                <Todo todo={todo} disabled={true} />
             </div>
         )) : <EmptyList />
     };
@@ -26,6 +38,8 @@ const ListTodo = () => {
     return (
         <div className={styles.listTodosWrapper}>
             <div className={styles.listTodos}>{todos != undefined && renderTodos()}</div>
+            <hr />
+            <div className={`${styles.listTodos} ${styles.listArchives}`}>{todos != undefined && renderArchives()}</div>
         </div>
     )
 };

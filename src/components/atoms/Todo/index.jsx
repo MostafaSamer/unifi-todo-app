@@ -5,7 +5,7 @@ import { useState } from "react";
 import Input from "../input";
 import CtaButton from "../CtaButton";
 
-const Todo = ({ todo }) => {
+const Todo = ({ todo, disabled = false }) => {
 
     const dispatch = useDispatch()
     const [editMode, setEditMode] = useState(false);
@@ -18,6 +18,16 @@ const Todo = ({ todo }) => {
             todo: {
                 ...todo,
                 checked: !todo.checked
+            }
+        }))
+    }
+
+    const handleArchiveTodo = () => {
+        dispatch(Todos.thunks.archiveTodo({
+            id: todo.id,
+            todo: {
+                ...todo,
+                archive: true
             }
         }))
     }
@@ -44,7 +54,7 @@ const Todo = ({ todo }) => {
     }
 
     const renderTodo = () => <div>
-        {editMode ? <>
+        {!disabled && editMode ? <>
             <Input
                 accessor={"editTodoTitle"}
                 onChange={(accessor, value) => setEditTitle(value)}
@@ -66,7 +76,7 @@ const Todo = ({ todo }) => {
     return (
         <div className={styles.todoWrapper}>
             <div className={styles.todo}>
-                <Input
+                {!disabled && <Input
                     accessor={"mark"}
                     onChange={handleCheckedTodo}
                     value={todo.checked}
@@ -77,21 +87,30 @@ const Todo = ({ todo }) => {
                         marginRight: '8px',
                         cursor: 'pointer'
                     }}
-                />
+                />}
                 {renderTodo()}
             </div>
-            <div className={styles.actions}>
+            {!disabled && <div className={styles.actions}>
+                <div className={styles.actionsFirst}>
+                    <CtaButton
+                        text={editMode ? "Save" : "Edit"}
+                        onClick={handleEditMode}
+                        style={editMode ? "success" : "primary"}
+                    />
+                    <CtaButton
+                        text={editMode ? "Discard" : "Delete"}
+                        onClick={handleDeleteTodo}
+                        customStyle={{width: "100%"}}
+                        style={"danger"}
+                    />
+                </div>
                 <CtaButton
-                    text={editMode ? "Save" : "Edit"}
-                    onClick={handleEditMode}
-                    style={editMode ? "success" : "primary"}
+                    text={"Archive"}
+                    onClick={handleArchiveTodo}
+                    customStyle={{width: "100%"}}
+                    style={"secondary"}
                 />
-                <CtaButton
-                    text={editMode ? "Discard" : "Delete"}
-                    onClick={handleDeleteTodo}
-                    style={"danger"}
-                />
-            </div>
+            </div>}
         </div>
     )
 }

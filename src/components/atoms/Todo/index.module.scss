@@ -19,7 +19,13 @@
 
     .actions {
         display: flex;
-        column-gap: 5px;
+        flex-direction: column;
+        row-gap: 5px;
+        
+        .actionsFirst {
+            column-gap: 5px;
+            display: flex;
+        }
     }
 
     .checked {

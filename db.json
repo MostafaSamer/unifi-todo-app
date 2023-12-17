@@ -4,19 +4,11 @@
       "id": 1,
       "title": "Finish this task 2",
       "description": "Finish this task 22%%",
-      "checked": true,
-      "created_at": false,
-      "finished_at": false,
-      "archive_at": false
-    },
-    {
-      "id": 2,
-      "title": "Finish this task 2",
-      "description": "Finish this task 222",
       "checked": false,
       "created_at": false,
       "finished_at": false,
-      "archive_at": false
+      "archive_at": "2023-12-17T21:43:49.292Z",
+      "archive": true
     },
     {
       "id": 3,

@@ -4,8 +4,10 @@
 .listTodosWrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 10px;
     padding-bottom: 100px;
+    flex-direction: column;
 
     .listTodos {
         min-width: 600px;
@@ -17,5 +19,9 @@
         @media (max-width: $md) {
             min-width: 350px;
         }
+    }
+
+    .listArchives {
+        opacity: 0.7;
     }
 }

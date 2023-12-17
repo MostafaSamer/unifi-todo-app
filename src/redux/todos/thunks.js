@@ -35,6 +35,7 @@ export const createTodo = createAsyncThunk('todos/createTodo', async (data, thun
 
 export const deleteTodo = createAsyncThunk('todos/deleteTodo', async (id, thunkAPI) => {
   try {
+    await TodosAPI.deleteTodo(id);
     return { data: id };
   } catch (error) {
     return thunkAPI.rejectWithValue(error.data);
@@ -44,6 +45,18 @@ export const deleteTodo = createAsyncThunk('todos/deleteTodo', async (id, thunkA
 export const markTodo = createAsyncThunk('todos/markTodo', async (data, thunkAPI) => {
   try {
     const {id, todo} = data;
+    todo.finished_at = todo.checked ? new Date() : false;
+    const response = await TodosAPI.updateTodo(id, todo);
+    return { data: response.data };
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.data);
+  }
+});
+
+export const archiveTodo = createAsyncThunk('todos/archiveTodo', async (data, thunkAPI) => {
+  try {
+    const {id, todo} = data;
+    todo.archive_at = new Date();
     const response = await TodosAPI.updateTodo(id, todo);
     return { data: response.data };
   } catch (error) {
