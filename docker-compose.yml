@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/usr/src/app/src  # If you want to mount your source code for development
+  json-server:
+    build:
+      context: .
+      dockerfile: DockerfileServer
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./db.json:/usr/src/app/db.json
