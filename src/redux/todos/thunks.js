@@ -25,7 +25,8 @@ export const createTodo = createAsyncThunk('todos/createTodo', async (data, thun
       title: data.title,
       description: data.description,
       completed: false,
-      userId: data.userId
+      userId: data.userId,
+      created_at: new Date()
     }
     const response = await TodosAPI.createTodo(params);
     return { data: response.data };
